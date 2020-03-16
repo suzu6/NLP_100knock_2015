@@ -74,7 +74,7 @@ import re
 
 
 def read_wiki(fname, tiltle):
-    with gzip.open(fname, 'rt') as data_file:
+    with gzip.open(fname, 'rt', encoding="utf-8") as data_file:
         for line in data_file:
             data_json = json.loads(line)
             if data_json['title'] == 'イギリス':
@@ -93,7 +93,7 @@ def set_basic_information(string):
     if m is None:
         return
     return {m.group(1): m.group(2)}
-    
+
 
 def main():
     fname = 'jawiki-country.json.gz'
@@ -107,7 +107,7 @@ def main():
         if m is None:
             continue
         basic_info[m.group(1).strip()] = m.group(2).strip()
-    
+
     print(basic_info)
 
 
